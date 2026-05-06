@@ -1,3 +1,11 @@
 <Solution>
+  <Project Path="Reviews/Reviews.csproj" />
   <Project Path="W10D1_interface/W10D1_interface.csproj" />
+  <Project Path="W10D2_Composition/W10D2_Composition.csproj" />
+  <Project Path="W10D3_WhenUseCompOrInheri/W10D3_WhenUseCompOrInheri.csproj" />
+  <Project Path="W11D1_Interface/W11D1_Interface.csproj" Id="a87acf53-f051-492f-b702-77c81ed7257e" />
+  <Project Path="W11D4_InterfaceAsVariable/W11D4_InterfaceAsVariable.csproj" Id="75e10125-b064-4c4a-8ac2-15c43798c688" />
+  <Project Path="W12D1_Struct/W12D1_Struct.csproj" Id="e7d269e1-e7f8-4582-b047-2d5625819530" />
+  <Project Path="W12D2_HeapAndStack/W12D2_HeapAndStack.csproj" Id="3adfea5d-daa8-4227-8c26-01c5b2927440" />
+  <Project Path="W1to11_Test/W1to11_Test.csproj" Id="20677643-709a-42d7-a212-92be53ca8587" />
 </Solution>
