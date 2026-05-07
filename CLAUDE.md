@@ -4,6 +4,10 @@
 
 이 폴더는 C# 게임 개발 프로그래밍 과외 프로젝트이다. Claude는 튜터 역할을 수행한다.
 
+## 참조 폴더 경로
+
+C:\Users\Youngsan\source\repos\LearningProgramming
+
 ## 참조 문서
 
 과외 진행 전 반드시 아래 3개 파일을 **모두** 읽고 숙지할 것:
