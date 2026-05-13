@@ -19,6 +19,7 @@
 | Phase 2 | 12주차 1~3일 (구조체/값형참조형/얕은복사깊은복사) | ✅ 완료 |
 | Phase 2 | 12주차 4일 (object 타입 / boxing·unboxing / struct+인터페이스 함정) | ✅ 완료 |
 | Phase 3 진입 전 보강 | 접근 제한자 / static / 상속 키워드 / partial (2026-05-12) | ✅ 완료 |
+| Phase 3 | 13주차 (static과 싱글턴 대안) | ✅ 완료 (2026-05-13) |
 
 > ⚠️ 포맷으로 인해 기존 study_log 원본이 소실됨. 이 파일은 과거 대화 기록에서 복원한 것으로, 누락된 세부 사항이 있을 수 있음.
 
@@ -338,6 +339,72 @@ Phase 1은 Gemini와 진행한 Day 3~7 + Claude와 재구성한 커리큘럼 기
 
 - 12주차 5일(버퍼)과 12주차 주말 과제(SDamageInfo 통합)는 학생이 명시적으로 스킵 결정
 - 13주차 진입 가능 상태 (오히려 13주차 핵심 개념을 이미 보강에서 다 다뤘으므로 실습 위주로 빠르게 통과 가능)
+
+---
+
+## 13주차 — static과 싱글턴 대안 ✅
+
+**날짜**: 2026-05-13
+**진행 방식**: 13주차 1~4일 개념은 2026-05-12 보강에서 모두 다뤘으므로 곧장 주말 통합 과제로 직행. 학생이 "B(13주차 진입)"를 명시적으로 선택.
+
+### 통합 과제
+
+**과제 파일**: `ReviewTotalSystemTest/TotalSystem.cs`
+
+**기획 명세 핵심 (static + 인스턴스 + 다형성 통합)**:
+- GameSettings (static 클래스): 게임 버전, 디버그 모드, 플레이어/몬스터 기본 체력
+- CombatLogger (static 유틸리티): 전투 로그 출력 + 누적 카운터 + 디버그 모드 ON일 때만 출력
+- Character (abstract): Player와 Monster의 공통 부모
+- Player/Monster (sealed): Character 상속, 생성자에서 GameSettings 값 사용
+- Main에서 `List<Character>` 다형성 활용 + 턴제 시뮬레이션
+
+### 핵심 학습 포인트
+
+- static 도구(GameSettings, CombatLogger)와 인스턴스(Character/Player/Monster)를 한 코드에서 통합 다룸
+- 다형성: `List<Character>` + 부모 타입 변수 (`Character player = new Player(...)`)
+- 상속 정석 패턴: 부모에 생성자 + 자식은 base() 위임 (3단계 보강 패턴 재적용)
+- 외부 읽기/쓰기 권한 분리: `public static int TotalLogCount { get; private set; }`
+- 디버그 모드 체크와 출력+카운트 묶기
+
+### 발견된 회귀와 정정 ⚠️
+
+보강 직후 첫 통합 과제에서 일시적 회귀 발생. **두 번째 라운드 정정에서 학생이 모두 본인 손으로 깔끔히 해결.**
+
+1. **3단계 + 1단계 동시 회귀 (BUG-2/3)**: Character에 생성자를 두지 않고 자식 Player/Monster가 부모의 protected 멤버에 직접 대입
+   - 1단계 영향: mName이 protected + readonly 누락 (자식이 직접 대입해야 했기 때문)
+   - 3단계 영향: ReviewVirtualAbstract.cs에서 정확히 짰던 "부모 생성자 + base() 위임" 패턴이 일시적으로 흐려짐
+   - 정정 후: Character 생성자 추가 → Player/Monster는 base() 위임 → mName private + readonly로 좁힘
+   - **이번에 더 단단히 박힘.** 다음 통합 과제에서 같은 회귀 가능성 낮음
+
+2. **명세 위반 (BUG-1)**: 디버그 모드 체크가 카운트만 감싸고 Console.WriteLine은 무조건 출력
+   - 정정 후: 출력과 카운트 모두 `if (IsDebugMode)` 블록 안으로
+
+3. **POCU 표기 위반 다수**:
+   - isDebugMode → IsDebugMode (부울 프로퍼티 Is 접두사)
+   - static private → private static (한정자 키워드 순서)
+   - AttackLog/DeathLog → PrintAttackLog/PrintDeathLog (동사+명사)
+   - 멤버 등장 순서 정리
+
+### 진단 퀴즈 재시도 결과 (2026-05-13)
+
+처음(보강 시작 전) 진단 퀴즈 12문항을 보강 후 다시 풀이:
+
+| 측면 | 처음 | 이번 |
+|:--|:--|:--|
+| 완전 정답 | 2개 (A-1, A-2) | 10개 |
+| 부분 정답 | 2개 (A-3 거의, C-1 일부) | 2개 (C-4, E-1) |
+| 모름/오답 | 8개 | 0개 |
+
+처음에 "하나도 모르겠음", "전혀 모르겠음", "좌절" 표현이 붙어있던 영역들이 모두 학생 본인 말로 깔끔히 답해지는 상태. 외운 표현이 아니라 본인이 재구성한 표현 사용("static이면서 static이 아닌척 숨기기 때문에 나쁘다" 등).
+
+**미세 회귀 (메타인지 정상 작동)**:
+- C-4: abstract 메서드의 제약은 정확히 답했으나 abstract 클래스 자체의 인스턴스화 불가 제약 누락
+- E-1: 두 번째 컴파일 에러(CardFactory.CreateAttackCard에 static 누락) 놓침. 학생이 "억지로 찾은 느낌"이라 자각하고 다른 항목을 답함 — 메타인지가 정상 작동 중이라는 신호
+
+### 진도 기록
+
+- 13주차 완료: 2026-05-13
+- 다음 진입 예정: **14주차 (제네릭)** — `ObjectPool<T>`, `where T : ...` 등. 보강 학습에서 다루지 않은 새 영역. CLAUDE.md "학습 밀도 유지 지침"의 9개 요소 그대로 적용 필요.
 
 ---
 

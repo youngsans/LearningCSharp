@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="ReviewStatics/ReviewStatics.csproj" Id="21cd33f7-7ae9-43a6-9f4b-35a04d7f41ac" />
+  <Project Path="ReviewTotalSystemTest/ReviewTotalSystemTest.csproj" Id="6e6d372f-8819-41a6-80a7-efaa58ef4fef" />
   <Project Path="ReviewVirtualAbstract/ReviewVirtualAbstract.csproj" Id="fe3d7171-f9e1-4913-b367-8067062a41a3" />
   <Project Path="Review_AccessScopes/Review_AccessScopes.csproj" Id="cbb248e6-1a5a-4f64-94e5-c8959bdb2988" />
   <Project Path="W10D1_interface/W10D1_interface.csproj" />
