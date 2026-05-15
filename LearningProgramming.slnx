@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="ReviewForeach/ReviewForeach.csproj" Id="b0072491-d7c9-4676-bced-7b10da4ba1b1" />
+  <Project Path="ReviewInterfaceAsIs/ReviewInterfaceAsIs.csproj" Id="eb4f0f3c-8e52-4be5-b52e-c9f476ea44b9" />
   <Project Path="ReviewStatics/ReviewStatics.csproj" Id="21cd33f7-7ae9-43a6-9f4b-35a04d7f41ac" />
   <Project Path="ReviewTotalSystemTest/ReviewTotalSystemTest.csproj" Id="6e6d372f-8819-41a6-80a7-efaa58ef4fef" />
   <Project Path="ReviewVirtualAbstract/ReviewVirtualAbstract.csproj" Id="fe3d7171-f9e1-4913-b367-8067062a41a3" />
@@ -11,4 +13,6 @@
   <Project Path="W12D1_Struct/W12D1_Struct.csproj" Id="e7d269e1-e7f8-4582-b047-2d5625819530" />
   <Project Path="W12D2_HeapAndStack/W12D2_HeapAndStack.csproj" Id="3adfea5d-daa8-4227-8c26-01c5b2927440" />
   <Project Path="W12D4_BoxingAndUnboxing/W12D4_BoxingAndUnboxing.csproj" Id="1f22c93c-23c8-4df6-a7c0-395e94f11ef9" />
+  <Project Path="W14D1GenericBasic/W14D1GenericBasic.csproj" Id="c94f5c76-707b-4d95-a9f0-f52285316204" />
+  <Project Path="W14D2GenericClass/W14D2GenericClass.csproj" Id="e5c0e30e-0ae2-4833-91f2-a285addb11f7" />
 </Solution>
