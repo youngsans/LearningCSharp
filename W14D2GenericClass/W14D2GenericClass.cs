@@ -5,9 +5,10 @@ namespace W14D2GenericClass
     public class Pool<T>
     {
         private readonly Queue<T> mPool = new Queue<T>();
-        public Queue<T> PoolQueue { get { return mPool; } }
+        
+        public int Count { get {  return mPool.Count; }  }
 
-        public void Regist(T item)
+        public void Register(T item)
         {
             mPool.Enqueue(item);
         }
@@ -23,18 +24,6 @@ namespace W14D2GenericClass
             mPool.Enqueue(item);
         }
 
-        public void PrintLeftItems()
-        {
-            if(mPool.Count > 0)
-            {
-                Console.WriteLine($"현재 남은 갯수: {mPool.Count}");
-            }
-
-            else
-            {
-                Console.WriteLine("남은 갯수가 없습니다.");
-            }
-        }
     }
 
     public class Card
@@ -79,27 +68,27 @@ namespace W14D2GenericClass
             Card strike = new Card("Strike", 1);
             Card defend = new Card("Defend", 1);
             Card bash = new Card("Bash", 2);
-            cardPool.Regist(strike);
-            cardPool.Regist(defend);
-            cardPool.Regist(bash);
+            cardPool.Register(strike);
+            cardPool.Register(defend);
+            cardPool.Register(bash);
 
             Pool<Monster> monsterPool = new Pool<Monster>();
             Monster goblin = new Monster("Goblin", 30);
             Monster slime = new Monster("Slime", 20);
-            monsterPool.Regist(goblin);
-            monsterPool.Regist(slime);
+            monsterPool.Register(goblin);
+            monsterPool.Register(slime);
 
-            cardPool.PrintLeftItems();
+            Console.WriteLine($"현재 남은 카드 갯수: {cardPool.Count}");
             List<Card> hand = new List<Card>();
             hand.Add(cardPool.Pull());
             Console.WriteLine($"뽑은 카드: [{hand[0].Name}]");
-            cardPool.PrintLeftItems();
+            Console.WriteLine($"현재 남은 카드 갯수: {cardPool.Count}");
             cardPool.Restore(hand[0]);
-            cardPool.PrintLeftItems();
+            Console.WriteLine($"현재 남은 카드 갯수: {cardPool.Count}");
 
             List<Monster> monsters = new List<Monster>();
             monsters.Add(monsterPool.Pull());
-            Console.WriteLine($"등장한 몬스터: [{monsters[0].Name}]");
+            Console.WriteLine($"등장한 몬스터: [{monsters[0].Name}] | 체력: [{monsters[0].Health}]");
 
 
 

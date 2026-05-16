@@ -15,4 +15,5 @@
   <Project Path="W12D4_BoxingAndUnboxing/W12D4_BoxingAndUnboxing.csproj" Id="1f22c93c-23c8-4df6-a7c0-395e94f11ef9" />
   <Project Path="W14D1GenericBasic/W14D1GenericBasic.csproj" Id="c94f5c76-707b-4d95-a9f0-f52285316204" />
   <Project Path="W14D2GenericClass/W14D2GenericClass.csproj" Id="e5c0e30e-0ae2-4833-91f2-a285addb11f7" />
+  <Project Path="W14D3GenericWhere/W14D3GenericWhere.csproj" Id="2da7d46d-b3b7-4233-ab7c-54024b0b8cde" />
 </Solution>
