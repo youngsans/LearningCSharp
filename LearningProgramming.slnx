@@ -16,4 +16,5 @@
   <Project Path="W14D1GenericBasic/W14D1GenericBasic.csproj" Id="c94f5c76-707b-4d95-a9f0-f52285316204" />
   <Project Path="W14D2GenericClass/W14D2GenericClass.csproj" Id="e5c0e30e-0ae2-4833-91f2-a285addb11f7" />
   <Project Path="W14D3GenericWhere/W14D3GenericWhere.csproj" Id="2da7d46d-b3b7-4233-ab7c-54024b0b8cde" />
+  <Project Path="W14D4ObjectPooling/W14D4ObjectPooling.csproj" Id="7036a808-917a-4c31-89c8-8715baab6978" />
 </Solution>
